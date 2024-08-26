@@ -90,36 +90,27 @@ public class GameMain extends JPanel implements MouseListener{
 		setBackground(Color.WHITE);
 		//ask the game board to paint itself
 		board.paint(g);
-		
+
 		//set status bar message
-		if (currentState == GameState.Playing) {          
-			statusBar.setForeground(Color.BLACK);          
+		if (currentState == GameState.Playing) {
+			statusBar.setForeground(Color.BLACK);
 			if (currentPlayer == Player.Cross) {
-
-				if (currentState == GameState.Playing) {
-					statusBar.setForeground(Color.BLACK);
-					if (currentPlayer == Player.Cross) {
-						statusBar.setText("X's Turn");
-
-				
+				statusBar.setText("X's Turn");
 			} else {
-						statusBar.setText("O's Turn");
-					}
-				
-			}       
-			} else if (currentState == GameState.Draw) {          
-				statusBar.setForeground(Color.RED);          
-				statusBar.setText("It's a Draw! Click to play again.");       
-			} else if (currentState == GameState.Cross_won) {          
-				statusBar.setForeground(Color.RED);          
-				statusBar.setText("'X' Won! Click to play again.");       
-			} else if (currentState == GameState.Nought_won) {          
-				statusBar.setForeground(Color.RED);          
-				statusBar.setText("'O' Won! Click to play again.");       
+				statusBar.setText("O's Turn");
 			}
+		} else if (currentState == GameState.Draw) {
+			statusBar.setForeground(Color.RED);
+			statusBar.setText("It's a Draw! Click to play again.");
+		} else if (currentState == GameState.Cross_won) {
+			statusBar.setForeground(Color.RED);
+			statusBar.setText("'X' Won! Click to play again.");
+		} else if (currentState == GameState.Nought_won) {
+			statusBar.setForeground(Color.RED);
+			statusBar.setText("'O' Won! Click to play again.");
 		}
-		
-	
+	}
+
 	  /** Initialise the game-board contents and the current status of GameState and Player) */
 		public void initGame() {
 			for (int row = 0; row < ROWS; ++row) {          
@@ -142,18 +133,11 @@ public class GameMain extends JPanel implements MouseListener{
 			//check for win after play
 			if(board.hasWon(thePlayer, row, col)) {
 				currentState = (thePlayer == Player.Cross) ? GameState.Cross_won : GameState.Nought_won;
-
-				
-			} else 
-				if (board.isDraw ()) {
-					currentState = GameState.Draw;
-				}
-
+			} else if (board.isDraw()) {
+				currentState = GameState.Draw;
 			}
 			//otherwise no change to current state of playing
 		}
-		
-				
 	
 		/** Event handler for the mouse click on the JPanel. If selected cell is valid and Empty then current player is added to cell content.
 		 *  UpdateGame is called which will call the methods to check for winner or Draw. if none then GameState remains playing.

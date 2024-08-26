@@ -11,7 +11,7 @@ public class Board {
 	
 	/** Constructor to create the game board */
 	public Board() {
-		cells = new Cell[GameMain.Rows][GameMain.COLS]; // Initialise the cells array
+		cells = new Cell[GameMain.ROWS][GameMain.COLS]; // Changed Rows to ROWS
 
 		for (int row = 0; row < GameMain.ROWS; ++row) {
 			for (int col = 0; col < GameMain.COLS; ++col) {
